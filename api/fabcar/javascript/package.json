@@ -1,0 +1,35 @@
+{
+  "name": "fabcar_js_app",
+  "version": "1.0.0",
+  "description": "Developed the application to communicate chaincode network",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "test.js"
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6"
+  },
+  "keywords": [
+    "Hyperledger",
+    "Fabric",
+    "e2e",
+    "application"
+  ],
+  "author": "Sudhan Manoharan",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-bearer-token": "^2.4.0",
+    "express-jwt": "^6.0.0",
+    "fabric-ca-client": "^2.2.5",
+    "fabric-network": "^2.2.5",
+    "http": "*",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.3.0",
+    "nodemon": "^2.0.7"
+  }
+}

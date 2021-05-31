@@ -1,0 +1,17 @@
+Script started on Sat May 22 18:22:18 2021
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+[?1034hbash-3.2$ ls
+channel-artifacts	docker			log.txt			organizations		system-genesis-block
+configtx		fabcarApp.tar.gz	network.sh		scripts			typescript
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ exist
+bash: exist: command not found
+bash-3.2$ exist[1Pt
+exit
+
+Script done on Sat May 22 18:22:42 2021
