@@ -1,1 +1,1 @@
-[34m2021-05-29 17:57:01.409 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"Inserted successfully" 
+[34m2021-06-05 21:21:59.711 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"Inserted successfully" 
