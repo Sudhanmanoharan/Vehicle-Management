@@ -1,0 +1,134 @@
+name: Fabric
+version: "1.0"
+mutual-tls: false
+
+caliper:
+  blockchain: fabric
+  # command:
+  #   start: export FABRIC_VERSION=1.4.4;export FABRIC_CA_VERSION=1.4.4;docker-compose -f networks/fabric/docker-compose/2org1peercouchdb_solo_raft/docker-compose-tls.yaml up -d;sleep 10s
+  #   end: docker-compose -f networks/fabric/docker-compose/2org1peercouchdb_solo_raft/docker-compose-tls.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
+
+info:
+  Version: 2.1.0
+  Size: 2 Orgs with 1 Peer
+  Orderer: Raft
+  Distribution: Single Host
+  StateDB: CouchDB
+
+clients:
+  client0.org1.example.com:
+    client:
+      organization: Org1
+      credentialStore:
+        path: /tmp/hfc-kvs/org1
+        cryptoStore:
+          path: /tmp/hfc-cvs/org1
+      clientPrivateKey:
+        path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/f95289f554a28ce805359c2b09b757269fe6a73d81a5a229b04e0f627d86a2e9_sk
+      clientSignedCert:
+        path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/cert.pem
+
+  client0.org2.example.com:
+    client:
+      organization: Org2
+      credentialStore:
+        path: /tmp/hfc-kvs/org2
+        cryptoStore:
+          path: /tmp/hfc-cvs/org2
+      clientPrivateKey:
+        path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/ea93409d870b1989c10181ca1a8100117adfabbabb9efa2ae876c6270d7a6247_sk
+      clientSignedCert:
+        path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/cert.pem
+
+channels:
+  mychannel:
+    # configBinary: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/channel-artifcats/mychannel.tx
+    created: true
+    # contracts: [{ "id": "fabcarApp", "version": "1" }]
+    definition:
+      capabilities: []
+      consortium: "SampleConsortium"
+      msps: ["Org1MSP", "Org2MSP"]
+      version: 0
+    orderers:
+      - orderer.example.com
+    peers:
+      peer0.org1.example.com:
+        eventSource: true
+      peer0.org2.example.com:
+        eventSource: true
+
+    contracts:
+    - id: fabcarApp
+      version: "1"
+      language: golang
+      path: /src/fabric/samples/fabcar/go
+
+organizations:
+  Org1:
+    mspid: Org1MSP
+    peers:
+      - peer0.org1.example.com
+    certificateAuthorities:
+      - ca-org1
+    adminPrivateKey:
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/bdba2e95fec96683e1a3fe603bc213ffc304f1995437810a80a0d31fb36551f3_sk
+    signedCert:
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/cert.pem
+
+  Org2:
+    mspid: Org2MSP
+    peers:
+      - peer0.org2.example.com
+    certificateAuthorities:
+      - ca-org2
+    adminPrivateKey:
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/d894776e4d8b6e2d961f538157b1eb66e72026e49ea4ff1d73b9536f49eb4226_sk
+    signedCert:
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/cert.pem
+
+orderers:
+  orderer.example.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.example.com
+    tlsCACerts:
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+peers:
+  peer0.org1.example.com:
+    url: grpcs://localhost:7051
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.example.com
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/cacerts/localhost-7054-ca-org1.pem
+
+  peer0.org2.example.com:
+    url: grpcs://localhost:9051
+    grpcOptions:
+      ssl-target-name-override: peer0.org2.example.com
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+
+certificateAuthorities:
+  ca-org1:
+    url: https://localhost:7054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+
+  ca-org2:
+    url: https://localhost:8054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw

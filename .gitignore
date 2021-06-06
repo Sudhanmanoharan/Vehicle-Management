@@ -24,7 +24,3 @@ test-network/organizations/peerOrganizations/
 # Ignore Gradle build output directory
 build
 package-lock.json
-caliper.log
-
-caliper/caliper-benchmarks-local/node_modules/
-# caliper/caliper-benchmarks-local/src/fabric/samples/fabcar/go/go.sum
