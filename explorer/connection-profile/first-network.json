@@ -44,7 +44,7 @@
     "Org1MSP": {
       "mspid": "Org1MSP",
       "adminPrivateKey": {
-        "path": "/etc/data/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/24de51192fa0b54e28d74624ed036c35260534748d7a02f9409293b1773cf929_sk"
+        "path": "/etc/data/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/959babbc34cbcbaa8e3159857bb27def22f9cb13b1cc19c6b19331be84cc114c_sk"
       },
       "peers": [
         "peer0.org1.example.com"

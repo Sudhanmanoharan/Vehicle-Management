@@ -9,7 +9,6 @@ export PEER0_ORG2_CA=${PWD}/organizations/peerOrganizations/org2.example.com/pee
 
 # Set environment variables for the peer org
 setGlobals() {
-    echo "$1"
     local USING_ORG=""
     if [ -z "$OVERRIDE_ORG" ]; then
         USING_ORG=$1

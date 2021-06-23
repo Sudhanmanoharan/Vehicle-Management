@@ -1,3 +1,11 @@
 #!/bin/bash
-COMPOSE_EXPLORER=docker-compose-explorer.yaml
-docker-compose -f $COMPOSE_EXPLORER down -d --volumes --remove-orphans
+
+COMPOSE_EXPLORER=docker-compose.yaml
+
+function explorerNetworkDown() {
+    echo "************************ Docker Explorer Network Down ************************"
+    docker-compose down
+    echo "************************ Docker Explorer Network Done ************************"
+}
+
+explorerNetworkDown

@@ -142,9 +142,10 @@ app.post('/channel/:channelName/chaincodes/:chaincodeName', async (req, res) => 
         var channelName = req.params.channelName;
         var chaincodeName = req.params.chaincodeName;
         var functionName = req.body.functionName;
+        var transient = req.body.transient;
         var args = req.body.args;
 
-        let message = await invokeHLF.invokeTransaction(channelName, chaincodeName, functionName, args, req.username, req.orgname);
+        let message = await invokeHLF.invokeTransaction(channelName, chaincodeName, functionName, args, req.username, req.orgname, transient);
 
         const response_payload = {
             result: message,

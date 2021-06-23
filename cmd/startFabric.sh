@@ -6,6 +6,7 @@ set -e
 # Chaincode Language
 CC_SRC_LANGUAGE="go"
 CC_SRC_PATH="../chaincode/fabcar/go/"
+CC_COLL_CONFIG="../common-utils/private-data/car-collections_config.json"
 
 CC_SRC_LANGUAGE=${1:-"go"}
 CC_SRC_LANGUAGE=$(echo "$CC_SRC_LANGUAGE" | tr [:upper:] [:lower:])
@@ -26,5 +27,5 @@ rm -rf ../api/fabcar/javascript/wallet
 # launch network; create channel and join peer to channel
 pushd ../test-network
 ./network.sh up createChannel -ca -s couchdb
-./network.sh deployCC -ccn fabcarApp -ccv 1 -cci InitLedger -ccl ${CC_SRC_LANGUAGE} -ccp ${CC_SRC_PATH}
+./network.sh deployCC -ccn fabcarApp -ccv 1 -cci InitLedger -ccl ${CC_SRC_LANGUAGE} -ccp ${CC_SRC_PATH} -cccg ${CC_COLL_CONFIG}
 popd
