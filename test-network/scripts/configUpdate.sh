@@ -1,6 +1,7 @@
 #!/bin/bash
 # import utils
 . scripts/envVar.sh
+. scripts/utils.sh
 
 # fetchChannelConfig <org> <channel_id> <output_json>
 # Writes the current channel config for a given channel to a JSON file

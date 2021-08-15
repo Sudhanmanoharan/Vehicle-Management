@@ -33,14 +33,6 @@ app.use(expressJWT({
 app.use(bearerToken());
 
 app.use((req, res, next) => {
-    // if (err.name === 'UnauthorizedError') {
-    //     return res.status(403).send({
-    //         success: false,
-    //         message: 'Failed to authenticate token. Make sure to include the ' +
-    //             'token returned from /users call in the authorization header ' +
-    //             ' as a Bearer token'
-    //     });
-    // }
     commonUtils.logger.debug('New req for %s', req.originalUrl);
     if (req.originalUrl.indexOf('/users') >= 0 || req.originalUrl.indexOf('/users/login') >= 0 || req.originalUrl.indexOf('/users/register') >= 0) {
         return next();
@@ -162,10 +154,6 @@ app.post('/channel/:channelName/chaincodes/:chaincodeName', async (req, res) => 
         }
         res.send(response_payload)
     }
-});
-
-app.post('/users', async (req, res) => {
-
 });
 
 

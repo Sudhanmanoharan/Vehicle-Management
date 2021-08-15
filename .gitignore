@@ -20,7 +20,7 @@ api/fabcar/javascript/wallet
 test-network/channel-artifacts/
 test-network/organizations/ordererOrganizations/
 test-network/organizations/peerOrganizations/
-test-network/log.txt
+test-network/logs.txt
 
 # Ignore Gradle build output directory
 build

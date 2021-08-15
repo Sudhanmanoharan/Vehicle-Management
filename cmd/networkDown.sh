@@ -12,7 +12,6 @@ if [ $1 == "down" ]; then
 elif [ $1 == "restart" ]; then
     mode="restart"
 fi
-
 # Bring the test network down
 pushd ../test-network
 ./network.sh $mode

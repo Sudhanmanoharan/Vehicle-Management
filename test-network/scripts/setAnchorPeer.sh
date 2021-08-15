@@ -1,5 +1,6 @@
 #!/bin/bash
 # import utils
+. scripts/utils.sh
 . scripts/envVar.sh
 . scripts/configUpdate.sh
 

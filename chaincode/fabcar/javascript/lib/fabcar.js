@@ -97,7 +97,6 @@ class FabCar extends Contract {
         if (!carAsBytes || carAsBytes.length === 0) {
             throw new Error(`${carNumber} does not exist`);
         }
-        console.log(carAsBytes.toString());
         console.info('============= END : Query Car ===========');
         return carAsBytes.toString();
     }
@@ -257,16 +256,13 @@ class FabCar extends Contract {
     }
 
     async RestictedMethod(ctx, carNumber) {
-        console.info('============= START : resticted Asset Car ===========');
+        console.info('============= START : Resticted Asset Car ===========');
 
         var cid = ctx.clientIdentity.assertAttributeValue("role", "approver");
         var getAttr = ctx.clientIdentity.getAttributeValue("role");
 
-        console.log("cid ---> "+ cid);    
-        console.log("getAttr ---> "+ getAttr);   
-
         if (cid == false) {
-            return "Error while invoking the get attribute value";
+            return "Only user with role as APPROVER have access to this method!";
         } else if (getAttr != "approver") {
             return "Only user with role as APPROVER have access to this method!";
         }
@@ -276,7 +272,7 @@ class FabCar extends Contract {
             return (`${carNumber} does not exist`);
         }
 
-        console.info('============= END : resticted Asset Car ===========');
+        console.info('============= END : Resticted Asset Car ===========');
         return JSON.parse(carAsBytes.toString());
     }
 

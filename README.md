@@ -1,6 +1,6 @@
 # Simple Vehicle Management System
 
-<div style="text-align: center"> 
+<div style="text-align: center">
 <img src="./screenshots/fabric.png" width="200"/>
 <img src="./screenshots/explorer.png" width="200"/>
 <img src="./screenshots/caliper.png" width="200"/>

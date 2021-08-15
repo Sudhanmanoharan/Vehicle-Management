@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 
 networks:
   test:
@@ -14,6 +14,8 @@ services:
       - COUCHDB_PASSWORD=adminpw
     # Comment/Uncomment the port mapping if you want to hide/expose the CouchDB service,
     # for example map it to utilize Fauxton User Interface in dev environments.
+    volumes:
+      - ../../persistent/couchdb0:/opt/couchdb/data
     ports:
       - "5984:5984"
     networks:
@@ -41,6 +43,8 @@ services:
       - COUCHDB_PASSWORD=adminpw
     # Comment/Uncomment the port mapping if you want to hide/expose the CouchDB service,
     # for example map it to utilize Fauxton User Interface in dev environments.
+    volumes:
+      - ../../persistent/couchdb1:/opt/couchdb/data
     ports:
       - "7984:5984"
     networks:

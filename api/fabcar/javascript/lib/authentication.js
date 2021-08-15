@@ -69,16 +69,22 @@ const userRegister = async (username, userOrg) => {
     const provider = wallet.getProviderRegistry().getProvider(adminIdentity.type);
     const adminUser = await provider.getUserContext(adminIdentity, 'admin');
     // const secret = await ca.register({ affiliation: await HLFService.getAffiliation(userOrg), enrollmentID: username, role: 'client' }, adminUser);
-    const secret = await ca.register({ affiliation: await HLFService.getAffiliation(userOrg), enrollmentID: username, role: 'client', attrs: [{ name: 'role', value: 'user', ecert: true }] }, adminUser);
+    const secret = await ca.register(
+        {
+            affiliation: await HLFService.getAffiliation(userOrg),
+            enrollmentID: username,
+            role: 'client',
+            attrs: [{ name: 'role', value: 'approver', ecert: true }]
+        }, adminUser);
 
     /** Register the user, enroll the user, and import the new identity into the wallet. */
     // const enrollment = await ca.enroll({ enrollmentID: username, enrollmentSecret: secret });
     const enrollment = await ca.enroll({
         enrollmentID: username,
         enrollmentSecret: secret,
-        attr_reqs:
-            [{ name: 'role', optional: false }]
+        attr_reqs: [{ name: 'role', optional: false }]
     });
+    
     const x509Identity = await HLFService.createX509Identity(userOrg, enrollment);
     await wallet.put(username, x509Identity);
     commonUtils.logger.debug(`Successfully registered and enrolled admin user ${username} and imported it into the wallet`);

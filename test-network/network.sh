@@ -32,6 +32,10 @@ COMPOSE_FILE_BASE=docker/docker-compose-test-net.yaml
 COMPOSE_FILE_COUCH=docker/docker-compose-couch.yaml
 # certificate authorities compose file
 COMPOSE_FILE_CA=docker/docker-compose-ca.yaml
+# explorer yaml
+COMPOSE_EXPLORER=../explorer/docker-compose.yaml
+# caliper yaml
+COMPOSE_CALIPER=../caliper/docker-compose.yaml
 # chaincode language defaults to "NA"
 CC_SRC_LANGUAGE="NA"
 # Chaincode version
@@ -69,8 +73,9 @@ function removeUnwantedImages() {
 # Tear down running network
 function networkDown() {
     # Stopping Org 1 & Org 2 containers
-    docker-compose -f $COMPOSE_FILE_BASE -f $COMPOSE_FILE_COUCH -f $COMPOSE_FILE_CA down --volumes --remove-orphans
+    docker-compose -f $COMPOSE_FILE_BASE -f $COMPOSE_FILE_COUCH -f $COMPOSE_FILE_CA -f $COMPOSE_EXPLORER -f $COMPOSE_CALIPER down --volumes --remove-orphans
     if [ "$MODE" != "restart" ]; then
+        rm -rf ../persistent/*
         # Bring down the network, deleting the volumes
         #Cleanup the chaincode containers
         clearContainers
@@ -105,7 +110,7 @@ function checkPrereqs() {
     # use the fabric tools container to see if the samples and binaries match your
     # docker images
     LOCAL_VERSION=$(peer version | sed -ne 's/ Version: //p')
-    DOCKER_IMAGE_VERSION=$(docker run --rm hyperledger/fabric-tools:2.3 peer version | sed -ne 's/ Version: //p' | head -1)
+    DOCKER_IMAGE_VERSION=$(docker run --rm hyperledger/fabric-tools:2.3.0 peer version | sed -ne 's/ Version: //p' | head -1)
 
     infoln "LOCAL_VERSION=$LOCAL_VERSION"
     infoln "DOCKER_IMAGE_VERSION=$DOCKER_IMAGE_VERSION"
@@ -126,7 +131,7 @@ function checkPrereqs() {
             exit 1
         fi
         CA_LOCAL_VERSION=$(fabric-ca-client version | sed -ne 's/ Version: //p')
-        CA_DOCKER_IMAGE_VERSION=$(docker run --rm hyperledger/fabric-ca:$CA_IMAGETAG fabric-ca-client version | sed -ne 's/ Version: //p' | head -1)
+        CA_DOCKER_IMAGE_VERSION=$(docker run --rm hyperledger/fabric-ca:1.5.0 fabric-ca-client version | sed -ne 's/ Version: //p' | head -1)
         infoln "CA_LOCAL_VERSION=$CA_LOCAL_VERSION"
         infoln "CA_DOCKER_IMAGE_VERSION=$CA_DOCKER_IMAGE_VERSION"
 
@@ -292,6 +297,7 @@ function networkUp() {
 function createChannel() {
     # which configtxgen
     # Bring up the network if it is not already up.
+    rm -rf ../persistent/*
     if [ ! -d "organizations/peerOrganizations" ]; then
         infoln "Bringing up network"
         networkUp
@@ -445,6 +451,9 @@ elif [ "${MODE}" == "deployCC" ]; then
     deployCC
     echo ${MODE}
 elif [ "${MODE}" == "down" ]; then
+    networkDown
+    echo ${MODE}
+elif [ "${MODE}" == "restart" ]; then
     networkDown
     echo ${MODE}
 else

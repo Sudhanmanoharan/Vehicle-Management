@@ -24,7 +24,7 @@ clients:
         cryptoStore:
           path: /tmp/hfc-cvs/org1
       clientPrivateKey:
-        path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/08429b624c571f4f2d0676e8f9dbe7f6014ac4f6265a585211756a44d2488b2f_sk
+        path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/d5aafd84294321ef92715673ba3bc672a1b1ec3109f07e0ec4fb966b5200b1de_sk
       clientSignedCert:
         path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/cert.pem
 
@@ -36,7 +36,7 @@ clients:
         cryptoStore:
           path: /tmp/hfc-cvs/org2
       clientPrivateKey:
-        path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/582682e2358725feb78f6aaf3796a8d6e3625ce81f18783f5ce97869ac62b088_sk
+        path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/84c5e4abde5ebab61378cccfeea128ffadfe6b10b771d2aa742553db905867a3_sk
       clientSignedCert:
         path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/cert.pem
 
@@ -72,7 +72,7 @@ organizations:
     certificateAuthorities:
       - ca-org1
     adminPrivateKey:
-      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/959babbc34cbcbaa8e3159857bb27def22f9cb13b1cc19c6b19331be84cc114c_sk
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/da9bc99c7a835a768a0624ed7fa95462174dc4067ac7f292128f6683123441b2_sk
     signedCert:
       path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/cert.pem
 
@@ -83,7 +83,7 @@ organizations:
     certificateAuthorities:
       - ca-org2
     adminPrivateKey:
-      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/a52e75af41ddf756ddd81798d6118aeb765aad1b88060f61e485352f7e195115_sk
+      path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/133ddaacc1c136c503805f6edec3038af3997c28246273ac3c907f2930300ead_sk
     signedCert:
       path: /Users/Sudhan/Blockchain/HyperLedgerFabric/Hyperledge-fabric/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/cert.pem
 

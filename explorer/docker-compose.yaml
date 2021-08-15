@@ -1,4 +1,4 @@
-version: '2.1'
+version: "2.1"
 
 volumes:
   pgdata:
@@ -7,10 +7,9 @@ volumes:
 networks:
   mynetwork.com:
     external:
-      name: net_test
+      name: docker_test
 
 services:
-
   explorerdb.mynetwork.com:
     image: hyperledger/explorer-db:latest
     container_name: explorerdb.mynetwork.com
